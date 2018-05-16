@@ -1,0 +1,2 @@
+class SpaceRating < ApplicationRecord
+end

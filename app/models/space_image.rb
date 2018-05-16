@@ -1,0 +1,2 @@
+class SpaceImage < ApplicationRecord
+end

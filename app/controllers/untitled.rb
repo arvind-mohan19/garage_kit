@@ -1,0 +1,1 @@
+$sql = "SELECT *, ( 6371 * acos( cos( radians(" . #{params[:latitude]} . ") ) * cos( radians( lat ) ) * cos( radians( longitude ) - radians(" . #{params[:longitude]} . ") ) + sin( radians(" . #{params[:latitude]} . ") ) * sin( radians( latitude ) ) ) ) AS distance FROM spaces HAVING distance < 5";

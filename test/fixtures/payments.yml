@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: 1.5
+  advance: 1.5
+  pending: 1.5
+  estimate: 1.5
+
+two:
+  total: 1.5
+  advance: 1.5
+  pending: 1.5
+  estimate: 1.5
