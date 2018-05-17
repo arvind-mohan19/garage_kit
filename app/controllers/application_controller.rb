@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-	before_filter :get_device
 	
 	private
 		def current_user

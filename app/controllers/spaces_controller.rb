@@ -37,8 +37,6 @@ class SpacesController < ApplicationController
     end
   end
 
-  # DELETE /spaces/1
-  # DELETE /spaces/1.json
   def destroy
     @space.destroy
   end
