@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  include Plivo
 
   def index
     @users = User.all
@@ -44,16 +45,19 @@ class UsersController < ApplicationController
   private
 
     def send_sms
-      require 'uri'
-      require 'net/http'
-      name = @user.name
+      require 'rubygems'
+      require 'plivo'
       @user.otp = rand(999999).to_s
-      pass = "Hi #{name}, This is your one time password:" + @user.otp
+      name = @user.name
+      client = RestClient.new('MAYZLHNDI5MZHKYZM0OD', 'MjU4M2E0MmExNjgzMGMxOTIzOWM3NjRjNWZlNzNk')
       phone = @user.phone
-      url = URI("https://api.textlocal.in/send/?username=m.arvind1904@gmail.com&hash=H0tpursuit&sender=TXTLCL&numbers=91#{phone}&message=#{pass}")
-      http = Net::HTTP.new(url.host, url.port)
-      request = Net::HTTP::Get.new(url)
-      response = http.request(request)
+      pass = "Hi #{name}, This is your one time password:" + @user.otp
+
+      message_created = client.messages.create(
+       '919080510262',
+       %w[91#{phone}],
+       '#{pass}'
+      )
     end
 
     def set_user
