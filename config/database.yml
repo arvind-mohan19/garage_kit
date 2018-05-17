@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: garage
+  database: heroku_77085f1cf1e41c4
+  username: bd17b0b7942b5a
+  password: 7b88cafd
+  host: us-cdbr-iron-east-04.cleardb.net
