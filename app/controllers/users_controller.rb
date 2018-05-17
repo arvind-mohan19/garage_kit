@@ -44,12 +44,16 @@ class UsersController < ApplicationController
   private
 
     def send_sms
+      require 'uri'
+      require 'net/http'
       name = @user.name
       @user.otp = rand(999999).to_s
-      pass = "Hi+#{name},+This+is+ur+one+time+passwd:" + @user.otp
+      pass = "Hi #{name}, This is your one time password:" + @user.otp
       phone = @user.phone
-      url = "http://s1.freesmsapi.com/messages/send?skey=8c0185641435ac8a43cf10230a1417ac&message=#{pass}&senderid=slash&recipient=#{phone}"
-      Net::HTTP.get_print URI.parse(url)
+      url = URI("https://api.textlocal.in/send/?username=m.arvind1904@gmail.com&hash=H0tpursuit&sender=TXTLCL&numbers=91#{phone}&message=#{pass}")
+      http = Net::HTTP.new(url.host, url.port)
+      request = Net::HTTP::Get.new(url)
+      response = http.request(request)
     end
 
     def set_user

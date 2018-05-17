@@ -23,6 +23,7 @@ gem 'mysql2'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'plivo', '>= 4.0.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
