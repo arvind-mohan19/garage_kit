@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
       message_created = client.messages.create(
        '919080510262',
-       %w[91#{phone}],
+       ['91#{phone}'],
        '#{pass}'
       )
     end
