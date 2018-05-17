@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new
+    @user.phone_number = params[:user][:phone_number]
+    @user.name = params[:user][:name]
     send_sms
 
     if @user.save
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
       device = Device.find_by_user_id(@user.id)
       device.logged_in = true
       device.save
-      session[:user_id] = @user.id
+        session[:user_id] = @user.id
     end
   end
 
@@ -50,7 +52,7 @@ class UsersController < ApplicationController
       @user.otp = rand(999999).to_s
       name = @user.name
       client = RestClient.new('MAYZLHNDI5MZHKYZM0OD', 'MjU4M2E0MmExNjgzMGMxOTIzOWM3NjRjNWZlNzNk')
-      phone = @user.phone
+      phone = @user.phone_number
       pass = "Hi #{name}, This is your one time password:" + @user.otp
 
       message_created = client.messages.create(
@@ -64,7 +66,4 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def user_params
-      params.fetch(:user, {})
-    end
 end
